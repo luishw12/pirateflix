@@ -3,6 +3,9 @@ import logo from "@/img/logo.png";
 import {navigation} from "@/components/navigation";
 import Link from "next/link";
 import {Input} from "@/components/ui/input";
+import {IoSearchSharp} from "react-icons/io5";
+import {Suspense} from "react";
+import {InputSkeleton} from "@/components/ui/input-skeleton";
 
 export default function Navbar() {
   return (
@@ -15,7 +18,9 @@ export default function Navbar() {
           <Link key={index} href={item.route} className={"hover:text-red-600 duration-150"}>{item.title}</Link>
         )}
       </ul>
-      <Input className={"w-[250px]"} />
+      <Suspense fallback={<InputSkeleton className={"w-[250px]"} />}>
+        <Input className={"w-[250px]"} icon={<IoSearchSharp />} clearable />
+      </Suspense>
     </div>
   )
 }
